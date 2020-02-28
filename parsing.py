@@ -8,13 +8,14 @@ artists = []
 url = 'https://www.whosampled.com/Knxwledge./'
 uClient = ureq(url)
 page_html = uClient.read()
-uClient.close
+uClient.close()
 
 page_soup = soup(page_html, "html.parser")
 
 def find_page_length():
     #div id content
-    page_wrapper = page_soup.find_all("div", {"class":"pagination-wrapper"})
+    pagination = page_soup.find_all("div", {"class":"pagination-wrapper"})
+    page_wrapper = pagination.find_all('href')
     
 
 
@@ -39,8 +40,9 @@ def find_samples():
             except:
                 artists.append("Unknown")
 
-    print(titles)
-    print(artists)
+    #print(titles)
+    #print(artists)
+    print(page_wrapper)
 
 def main():
     pass
