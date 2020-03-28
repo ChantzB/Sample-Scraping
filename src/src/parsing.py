@@ -52,7 +52,7 @@ def find_samples():
     conn.close()
 
 def main():
-    # find_page_length()
+    find_page_length()
     find_samples()
 
 if __name__ == "__main__":
