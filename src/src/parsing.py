@@ -17,7 +17,7 @@ def find_page_length():
     page_href = page_span.find('a')
     total_pages = int(page_href.text)
 
-def find_artists():
+def find_samples():
     conn = sqlite3.connect('samples.db')
     c = conn.cursor()
 

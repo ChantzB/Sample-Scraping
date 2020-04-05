@@ -1,3 +1,4 @@
+
 import sqlite3
 
 
@@ -16,5 +17,3 @@ print(c.fetchall())
 conn.commit()
 
 conn.close()
-
-
