@@ -54,6 +54,6 @@ def find_artists():
 def main():
     # find_page_length()
     # find_artists()
-
+    pass
 if __name__ == "__main__":
     main()
