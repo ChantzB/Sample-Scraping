@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,34 @@
     <title>Sample Search</title>
 </head>
 <body>
-    
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Search for samples
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form class="search-form" action="{% url 'samples:search' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type='submit' class="Search">
+                            Search
+                        </button>
+                    </form>
+                    <table>
+                        {% for samples in qu %}
+                        <td>{{ sample.artist }}</td>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
