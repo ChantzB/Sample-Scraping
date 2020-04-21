@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: lightgoldenrodyellow;
+}
+
+.header{
+    background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url("/static/photos/knxheader.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 30px;
+    background-color: #333;
+    color: white;
+    padding: 120px;
+}
+
+.highlights{
+    padding-left: 50px;
+    
+}
+
+.gallery img{
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+button{
+    margin: 10px;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    background: #333;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 1s;
+}
+button:hover{
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+}

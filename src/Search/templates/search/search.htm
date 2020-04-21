@@ -1,39 +1,40 @@
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'template.css' %}">
     <title>Sample Search</title>
 </head>
 <body>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Search for samples
-                </h1>
-            </div>
-        </div>
+    <section class="title">
+        <h1 class="title">
+            Search for samples
+        </h1>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-offset-4 is-4">
-                    <form class="search-form" action="{% url 'samples:search' %}" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type='submit' class="Search">
-                            Search
-                        </button>
-                    </form>
-                    <table>
-                        {% for samples in qu %}
-                        <td>{{ sample.artist }}</td>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
+    <section class="search">
+        <form class="search-form" action="{% url 'samples:search' %}" method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="form-control" type="search" name="sample_contains" placeholder="Search By Artist or Title"/>
+            <button type='submit' class="Search">
+                Search
+            </button>
+        </form>
+    </section>
+    <section class="samples">
+        <div class="row">
+            <ul>
+                {% for sample in queryset %}
+                    <li>
+                        <span>Artist: {{ sample.artist }}</span> <br/>
+                        <span>Title: {{ sample.title }}</span> <br/>
+                        <span>Producer: {{ sample.producer_id }}</span>
+                        <hr/>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </section>
 </body>
