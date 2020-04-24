@@ -23,6 +23,12 @@ body{
     
 }
 
+.title{
+    font-size: 25px;
+    padding: 50px;
+}
+
+
 .gallery img{
     padding-top: 20px;
     padding-right: 40px;

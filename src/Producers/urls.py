@@ -4,5 +4,7 @@ from . import views
 app_name="producers"
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name="index"),
+    path('<slug:slug>/', views.bio, name="bio")
 ]
+

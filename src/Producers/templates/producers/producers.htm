@@ -2,4 +2,19 @@
 
 {% block content %}
 
+
+<section class="title">
+    <h1 class="title">
+        Producers
+    </h1>
+</section>
+<div>
+    <ul>
+        {% for producer in queryset %}
+            <li>
+                <a href="{% url 'producers:bio' slug=producer.slug%}">{{ producer.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>   
+</div>
 {% endblock %}

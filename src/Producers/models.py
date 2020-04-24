@@ -120,6 +120,7 @@ class DjangoSession(models.Model):
 
 class Producers(models.Model):
     producer_id = models.AutoField(db_column='Producer_ID', primary_key=True, blank=True, null=False)  # Field name made lowercase.
+    slug = models.SlugField()
     name = models.TextField(db_column='Name')  # Field name made lowercase.
     info = models.TextField(db_column='Info', blank=True, null=True)  # Field name made lowercase.
 

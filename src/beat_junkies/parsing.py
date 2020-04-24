@@ -2,20 +2,25 @@ from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
 import sqlite3
 
+# initial db creation
 conn = sqlite3.connect('samples.db')
 c = conn.cursor()
-c.execute("DROP TABLE IF EXISTS producers");
-c.execute("DROP TABLE IF EXISTS samples");
-c.execute("CREATE TABLE producers(Producer_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, Info text)");
-c.execute("CREATE TABLE samples(Song_ID INTEGER PRIMARY KEY AUTOINCREMENT, Producer_ID INTEGER NOT NULL, Artist text NOT NULL, Title text NOT NULL, FOREIGN KEY (Producer_ID) REFERENCES producers(Producer_ID))");
+producers = []
+db_producers = []
+def inital_db_create():
 
-#I used two lists so the database didn't have characters like "-" and "%".. since samples are linked by Producer_ID, no issues should occur. 
-db_producers = ['Knxwledge', 'Madlib', 'Alchemist', 'Kaytranada', 'J Dilla', 'Kanye West', 'DJ Premier', '9th Wonder', 'Pete Rock', 'Dr. Dre', 'Marley Marl', 'RZA', 'Statik Selektah', 'Evidence', 'MF DOOM', 'Cookin Soul']
-producers = ['Knxwledge.', 'Madlib', 'The-Alchemist', 'Kaytranada', 'J-Dilla', 'Kanye-West', 'DJ-Premier', '9th-Wonder', 'Pete-Rock', 'Dr.-Dre', 'Marley-Marl', 'RZA', 'Statik-Selektah', 'Evidence', 'MF-DOOM', 'Cookin%27-Soul']
+    c.execute("DROP TABLE IF EXISTS producers");
+    c.execute("DROP TABLE IF EXISTS samples");
+    c.execute("CREATE TABLE producers(Producer_ID INTEGER PRIMARY KEY AUTOINCREMENT, Slug slug, Name text NOT NULL, Info text)");
+    c.execute("CREATE TABLE samples(Song_ID INTEGER PRIMARY KEY AUTOINCREMENT, Producer_ID INTEGER NOT NULL, Artist text NOT NULL, Title text NOT NULL, FOREIGN KEY (Producer_ID) REFERENCES producers(Producer_ID))");
 
-with conn:
-    for producer in db_producers:
-        c.execute("INSERT INTO producers VALUES(:Producer_ID, :Name, :Info)", {'Producer_ID': None,'Name':producer, 'Info':None});
+    #I used two lists so the database didn't have characters like "-" and "%".. since samples are linked by Producer_ID, no issues should occur. 
+    db_producers = ['Knxwledge', 'Madlib', 'Alchemist', 'Kaytranada', 'J Dilla', 'Kanye West', 'DJ Premier', '9th Wonder', 'Pete Rock', 'Dr. Dre', 'Marley Marl', 'RZA', 'Statik Selektah', 'Evidence', 'MF DOOM', 'Cookin Soul']
+    producers = ['Knxwledge.', 'Madlib', 'The-Alchemist', 'Kaytranada', 'J-Dilla', 'Kanye-West', 'DJ-Premier', '9th-Wonder', 'Pete-Rock', 'Dr.-Dre', 'Marley-Marl', 'RZA', 'Statik-Selektah', 'Evidence', 'MF-DOOM', 'Cookin%27-Soul']
+
+    with conn:
+        for producer in db_producers:
+            c.execute("INSERT INTO producers VALUES(:Producer_ID, :Name, :Info)", {'Producer_ID': None,'Name':producer, 'Info':None});
 
 
 def find_samples():
@@ -61,8 +66,11 @@ def find_samples():
                 with conn:
                     c.execute("INSERT INTO samples VALUES (:Song_ID, :PID, :Artist, :Title)", {'Song_ID':None, 'PID':producers.index(producer)+1, 'Artist':artist, 'Title':title})
         
+def add_producers():
+    pass
 
-
+def add_bio_images():
+    pass
 def main():
     find_samples()
     pass

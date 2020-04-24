@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +11,15 @@
     <header class="main-header" id="headerMain">
         <div class="header">
             <center><h1>beatjunky</h1></center>
-            <center>its tha loop digga</center>
+            <!-- <center>its tha loop digga</center> -->
     </header>
     <center><section>
-        <button>home</button>
-        <button>producers</button>
-        <button>about</button>
+        <div>
+            <a class="navbar-producers" href="{% url 'samples:search' %}">Home</a>
+        </div>
+        <div>
+            <a class="navbar-producers" href="{% url 'producers:index' %}">Producers</a>
+        </div>
     </section></center>
     <div class="wrapper">
         {% block content %}
