@@ -123,6 +123,7 @@ class Producers(models.Model):
     slug = models.SlugField()
     name = models.TextField(db_column='Name')  # Field name made lowercase.
     info = models.TextField(db_column='Info', blank=True, null=True)  # Field name made lowercase.
+    image = models.ImageField(upload_to='bio_image', blank=True)
 
     class Meta:
         managed = False
