@@ -150,9 +150,10 @@ class Samples(models.Model):
 
 class Articles(models.Model):
     article_id = models.AutoField(primary_key=True)
-    name = models.TextField()
+    title = models.TextField()
     content = models.TextField(max_length=500)
     link = models.URLField()
+    date = models.TextField()
     producer_id = models.ForeignKey(Producers, models.DO_NOTHING, db_column='Producer_ID')
 
     class Meta:
@@ -160,4 +161,4 @@ class Articles(models.Model):
         db_table = 'Articles'
 
     def __str__(self):
-        return self.name
+        return self.title

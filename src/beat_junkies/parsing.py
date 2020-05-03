@@ -1,6 +1,7 @@
 from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
 import sqlite3
+import datetime
 
 # initial db creation
 conn = sqlite3.connect('samples.db')
@@ -10,7 +11,7 @@ db_producers = []
 
 def create_artcles_table():
     c.execute("Drop table if exists Articles");
-    c.execute("CREATE TABLE Articles(Article_ID Integer primary key autoincrement, Name text NOT Null, Content varchar(500) Not Null, Link text Not Null, Producer_ID INTEGER NOT NULL, FOREIGN KEY (Producer_ID) REFERENCES producers(Producer_ID))");
+    c.execute("CREATE TABLE Articles(Article_ID Integer primary key autoincrement, Title text NOT Null, Content varchar(500) Not Null, Link text Not Null, Date text NOT null, Producer_ID INTEGER NOT NULL, FOREIGN KEY (Producer_ID) REFERENCES producers(Producer_ID))");
 
 def inital_db_create():
 
@@ -73,6 +74,8 @@ def find_samples():
 
 def add_article():
     #knxwledge article
+        Date = datetime.date.today().strftime("%B %d, %Y")
+        Title = "Knxwledge 1988"
         Name = "Kxnwledge"
         url = 'https://pitchfork.com/reviews/albums/knxwledge-1988/'
         uClient = ureq(url)
@@ -82,13 +85,14 @@ def add_article():
         paragraphs = page_soup.find_all('p')
         Content = paragraphs[0].text
         with conn:
-            c.execute("INSERT INTO Articles VALUES (:Article_ID, :Name, :Content, :Link, :Producer_id)", {'Article_ID':None, 'Name': Name, 'Content':Content, 'Link':url, 'Producer_id':Name})
+            c.execute("INSERT INTO Articles VALUES (:Article_ID, :Title, :Content, :Link, :Date, :Producer_id)", {'Article_ID':None, 'Title': Title, 'Content':Content, 'Link':url, 'Date': Date,'Producer_id':Name})
         
 
 def add_bio_images():
     pass
 
 def main():#be sure you're running correct function. Not all functions meant to be run everytime.
+    create_artcles_table()
     add_article()
     pass
 if __name__ == "__main__":

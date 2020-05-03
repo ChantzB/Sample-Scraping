@@ -7,8 +7,27 @@
         <h1 class="title" style="font-size: 30px;">
             Lastest Music
     </section></center>
-    <section class="samples">
-
+    <section>
+        <ul class="articles" style="float:left;">
+            {% for article in queryset %}
+                <article style="border-style:groove; width:50%; background-color:#333;opacity:0.9;">
+                    <h1 style="font-size:3rem; padding: 20px; color:floralwhite;">{{article.title}}</h1>
+                        <h5 style="padding-left: 20px; color:floralwhite;">{{article.date}}</h5>
+                        <p style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+                                font-size:large; 
+                                color:floralwhite; padding: 20px;">{{article.content}}</p>
+                        <a href="{{article.link}}" style="padding: 20px; 
+                                                          color:rgb(211, 42, 42);
+                                                          font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+                                                          font-size:small;
+                                                          font-size:bold;"> Click for full story</a> 
+                </article>
+                <br/>
+            {% endfor %}
+        </ul>
+        <!-- <ul style="float:right;">
+            <h1>Pictures or sum</h1>
+        </ul> -->
     </section>
 </body>
 

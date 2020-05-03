@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/static/style.css">
     <title>Beat Junkies</title>
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('/static/photos/wallpaper.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-size: 30px;
+            background-color: #333;
+            padding: 120px;">
     <header class="main-header" id="headerMain">
         <div class="header">
             <center><h1>beatjunky</h1></center>
@@ -40,7 +45,7 @@
                    cursor: pointer;
                    transition: all 1s;">Producers</a>
         </div>
-    <div class="wrapper">
+    <div>
         {% block content %}
         {% endblock %}
     </div>
