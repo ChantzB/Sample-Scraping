@@ -7,6 +7,11 @@ conn = sqlite3.connect('samples.db')
 c = conn.cursor()
 producers = []
 db_producers = []
+
+def create_artcles_table():
+    c.execute("Drop table if exists Articles");
+    c.execute("CREATE TABLE Articles(Article_ID Integer primary key autoincrement, Name text NOT Null, Content varchar(500) Not Null, Link text Not Null, Producer_ID INTEGER NOT NULL, FOREIGN KEY (Producer_ID) REFERENCES producers(Producer_ID))");
+
 def inital_db_create():
 
     c.execute("DROP TABLE IF EXISTS producers");
@@ -65,14 +70,26 @@ def find_samples():
                         continue
                 with conn:
                     c.execute("INSERT INTO samples VALUES (:Song_ID, :PID, :Artist, :Title)", {'Song_ID':None, 'PID':producers.index(producer)+1, 'Artist':artist, 'Title':title})
+
+def add_article():
+    #knxwledge article
+        Name = "Kxnwledge"
+        url = 'https://pitchfork.com/reviews/albums/knxwledge-1988/'
+        uClient = ureq(url)
+        page_html = uClient.read()
+        uClient.close()
+        page_soup = soup(page_html, "html.parser")
+        paragraphs = page_soup.find_all('p')
+        Content = paragraphs[0].text
+        with conn:
+            c.execute("INSERT INTO Articles VALUES (:Article_ID, :Name, :Content, :Link, :Producer_id)", {'Article_ID':None, 'Name': Name, 'Content':Content, 'Link':url, 'Producer_id':Name})
         
-def add_producers():
-    pass
 
 def add_bio_images():
     pass
-def main():
-    find_samples()
+
+def main():#be sure you're running correct function. Not all functions meant to be run everytime.
+    add_article()
     pass
 if __name__ == "__main__":
     main()
