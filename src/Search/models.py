@@ -123,11 +123,16 @@ class Producers(models.Model):
     slug = models.SlugField()
     name = models.TextField(db_column='Name')  # Field name made lowercase.
     info = models.TextField(db_column='Info', blank=True, null=True)  # Field name made lowercase.
-    image = models.ImageField(upload_to='bio_image', blank=True)
+    image = models.ImageField(null=True, blank=True)
+
 
     class Meta:
         managed = False
         db_table = 'producers'
+
+    def __str__(self):
+        return self.name
+    
 
 
 class Samples(models.Model):
@@ -139,3 +144,20 @@ class Samples(models.Model):
     class Meta:
         managed = False
         db_table = 'samples'
+
+    def __str__(self):
+        return self.title
+
+class Articles(models.Model):
+    article_id = models.AutoField(primary_key=True)
+    name = models.TextField()
+    content = models.TextField(max_length=500)
+    link = models.URLField()
+    producer_id = models.ForeignKey(Producers, models.DO_NOTHING, db_column='Producer_ID')
+
+    class Meta:
+        managed = False
+        db_table = 'Articles'
+
+    def __str__(self):
+        return self.name

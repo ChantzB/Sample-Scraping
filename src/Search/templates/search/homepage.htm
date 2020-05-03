@@ -3,33 +3,12 @@
 {% block content %}
 
 <body>
-    <section class="title">
-        <h1 class="title">
-            Search for samples
-        </h1>
-    </section>
-    <section class="search">
-        <form class="search-form" action="{% url 'samples:search' %}" method="GET" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input class="form-control" type="search" name="sample_contains" placeholder="Search By Artist or Title"/>
-            <button type='submit' class="Search">
-                Search
-            </button>
-        </form>
-    </section>
+    <center><section class="search" style="padding: 20px;">
+        <h1 class="title" style="font-size: 30px;">
+            Lastest Music
+    </section></center>
     <section class="samples">
-        <div class="row">
-            <ul>
-                {% for sample in queryset %}
-                    <li>
-                        <span>Artist: {{ sample.artist }}</span> <br/>
-                        <span>Title: {{ sample.title }}</span> <br/>
-                        <span>Producer: {{ sample.producer_id }}</span>
-                        <hr/>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+
     </section>
 </body>
 

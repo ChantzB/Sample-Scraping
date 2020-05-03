@@ -49,3 +49,7 @@ button:hover{
     color: black;
     border: 1px solid black;
 }
+
+div{
+    padding: 10px;
+}

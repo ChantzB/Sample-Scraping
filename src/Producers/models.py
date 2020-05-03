@@ -130,6 +130,10 @@ class Producers(models.Model):
         managed = False
         db_table = 'producers'
 
+    def __str__(self):
+        return self.name
+    
+
 
 class Samples(models.Model):
     song_id = models.AutoField(db_column='Song_ID', primary_key=True, blank=True, null=False)  # Field name made lowercase.
@@ -140,3 +144,20 @@ class Samples(models.Model):
     class Meta:
         managed = False
         db_table = 'samples'
+
+    def __str__(self):
+        return self.title
+
+class Articles(models.Model):
+    article_id = models.AutoField(primary_key=True)
+    name = models.TextField()
+    content = models.TextField(max_length=500)
+    link = models.URLField()
+    producer_id = models.ForeignKey(Producers, models.DO_NOTHING, db_column='Producer_ID')
+
+    class Meta:
+        managed = False
+        db_table = 'Articles'
+
+    def __str__(self):
+        return self.name
