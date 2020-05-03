@@ -7,7 +7,7 @@
     </h1>
     <div>
         <img src="{{ producer.image.url }}" style="height:300px; padding-left:30px; float:left"/>
-        <form class="search-form" action="{% url 'producers:bio' slug=producer.slug%}" method="GET" enctype="multipart/form-data" style="float:right; padding-right:50px; height:300px;">
+        <form class="search-form" action="{% url 'producers:search' %}" method="GET" enctype="multipart/form-data" style="float:right; padding-right:50px; height:300px;">
             {% csrf_token %}
             <input class="form-control" type="search" name="artist_contains" placeholder="Search By Artist or Title"/>
             <button type='submit' class="Search">

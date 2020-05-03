@@ -13,14 +13,33 @@
             <center><h1>beatjunky</h1></center>
             <!-- <center>its tha loop digga</center> -->
     </header>
-    <center><section>
-        <div>
-            <a class="navbar-producers" href="{% url 'samples:search' %}">Home</a>
+    <section>
+        <div class="navbar" 
+        style="padding: 20px;
+               background-color:#333">
+            <a class="navbar-producers" href="{% url 'samples:search' %}"
+            style="font-size:20px;
+                   font: 'Courier New', monospace;
+                   text-decoration: none;
+                   color: white;
+                   margin: 10px;
+                   padding: 10px 20px;
+                   border: 1px solid transparent;
+                   border-radius: 20px;
+                   cursor: pointer;
+                   transition: all 1s;">Home</a>
+            <a class="navbar-producers" href="{% url 'producers:index' %}"
+            style="font: 'Courier New', monospace;
+                   text-decoration: none;
+                   font-size:20px;
+                   color: white;
+                   margin: 10px;
+                   padding: 10px 20px;
+                   border: 1px solid transparent;
+                   border-radius: 20px;
+                   cursor: pointer;
+                   transition: all 1s;">Producers</a>
         </div>
-        <div>
-            <a class="navbar-producers" href="{% url 'producers:index' %}">Producers</a>
-        </div>
-    </section></center>
     <div class="wrapper">
         {% block content %}
         {% endblock %}
