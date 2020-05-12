@@ -3,10 +3,10 @@
 {% block content %}
 <section class="title">
     <h1 class="name">
-        <center><a class="Artist" style="font-size: 30px; padding: 30px">{{ producer.name }}</a></center>
+        <center><a class="Artist" style="font-size: 40px; padding: 30px; color:white;">{{ producer.name }}</a></center>
     </h1>
     <div>
-        <img src="{{ producer.image.url }}" style="height:300px; padding-left:30px; float:left"/>
+        <img src="{{ producer.image.url }}" style="height:300px; width:400px; padding-left:30px; float:left"/>
         <form class="search-form" action="{% url 'producers:bio' slug=producer.slug%}" method="GET" enctype="multipart/form-data" style="float:right; padding-right:50px; height:300px;">
             {% csrf_token %}
             <input class="form-control" type="search" name="artist_contains" placeholder="Search By Artist or Title"/>
@@ -14,22 +14,22 @@
                 Search
             </button>
         </form>
-        <center><div>
-            <ul style="width: 25%; list-style-type: none;">
-                <h1>{{count}} Results</h1>
+        <center><div style="border:inset; background-color:#333; opacity:0.9; width: 35%;">
+            <ul style="width: 55%; list-style-type: none;">
+                <h1 style="color:white;">{{count}} Results</h1>
                 {% for sample in posts %}
                     <li style="padding:10px; border-top-style:inset;
                                              border-bottom-style:inset;
                                              border-left-style:solid;
-                                             border-right-style:solid;">
-                        <span style="font-size: large;
-                                     font:bold;
-                                     float:left;">
+                                             border-right-style:solid;
+                                             background-color:white;opacity:0.8;">
+                        <center><h6>Sample</h6></center>
+                        <span style="font-size: 18px;
+                                     font:Bold;">
                                      {{ sample.title }}
                         </span> <br/>
                         <span style="font-size: large;
-                                     font:bold;
-                                     float:left;">
+                                     font: bolder;">
                                      By {{ sample.artist }}
                         </span> <br/>
                     </li>

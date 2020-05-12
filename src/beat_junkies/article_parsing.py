@@ -17,7 +17,6 @@ def create_artcles_table():
 Date = datetime.date.today().strftime("%B %d, %Y")
 #In order to scrape within one function, and provide the code. I will comment out each articel as I go. 
 def add_article():
-    Date = datetime.date.today().strftime("%B %d, %Y")
 
     #knxwledge article
     # Title = "Knxwledge 1988"
@@ -31,15 +30,25 @@ def add_article():
     # Content = paragraphs[0].text
 
     #madlib
-    url = 'https://www.complex.com/music/madlib-interview-best-hip-hop-producer-2019'
+    # url = 'https://www.complex.com/music/madlib-interview-best-hip-hop-producer-2019'
+    # uClient = ureq(url)
+    # page_html = uClient.read()
+    # uClient.close()
+    # page_soup = soup(page_html, "html.parser")
+    # Title = page_soup.find_all('h1', class_="story-title story-title__featured")[0].text
+    # Content = page_soup.find_all('h4', class_="sub-title")[0].text
+    # Name = 'Madlib'
+    # paragraphs = page_soup.find_all('p')
+
+    #beat battles
+    url = 'https://www.vulture.com/2020/04/verzuz-instagram-live-battles-ranked.html'
     uClient = ureq(url)
     page_html = uClient.read()
     uClient.close()
     page_soup = soup(page_html, "html.parser")
-    Title = page_soup.find_all('h1', class_="story-title story-title__featured")[0].text
-    Content = page_soup.find_all('h4', class_="sub-title")[0].text
-    Name = 'Madlib'
-    paragraphs = page_soup.find_all('p')
+    Title = page_soup.find_all('h1', class_="headline-primary")[0].text
+    Content = page_soup.find_all('p', class_="clay-paragraph")[0].text
+    Name = 'RZA'
 
     with conn:
         c.execute("INSERT INTO Articles VALUES (:Article_ID, :Title, :Content, :Link, :Date, :Producer_id)", {'Article_ID':None, 'Title': Title, 'Content':Content, 'Link':url, 'Date': Date,'Producer_id':Name})

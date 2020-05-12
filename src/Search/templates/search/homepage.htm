@@ -25,9 +25,12 @@
                 <br/>
             {% endfor %}
         </ul>
-        <!-- <ul style="float:right;">
-            <h1>Pictures or sum</h1>
-        </ul> -->
+        <ul style="float: right;" >
+            {% for highlight in highlights %}
+                {{hightlight.Content}}
+                {{ hightlight.Img }}
+            {% endfor %}
+        </ul>
     </section>
 </body>
 
