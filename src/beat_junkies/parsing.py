@@ -71,29 +71,9 @@ def find_samples():
                         continue
                 with conn:
                     c.execute("INSERT INTO samples VALUES (:Song_ID, :PID, :Artist, :Title)", {'Song_ID':None, 'PID':producers.index(producer)+1, 'Artist':artist, 'Title':title})
-
-def add_article():
-    #knxwledge article
-        Date = datetime.date.today().strftime("%B %d, %Y")
-        Title = "Knxwledge 1988"
-        Name = "Kxnwledge"
-        url = 'https://pitchfork.com/reviews/albums/knxwledge-1988/'
-        uClient = ureq(url)
-        page_html = uClient.read()
-        uClient.close()
-        page_soup = soup(page_html, "html.parser")
-        paragraphs = page_soup.find_all('p')
-        Content = paragraphs[0].text
-        with conn:
-            c.execute("INSERT INTO Articles VALUES (:Article_ID, :Title, :Content, :Link, :Date, :Producer_id)", {'Article_ID':None, 'Title': Title, 'Content':Content, 'Link':url, 'Date': Date,'Producer_id':Name})
-        
-
-def add_bio_images():
-    pass
+S
 
 def main():#be sure you're running correct function. Not all functions meant to be run everytime.
-    create_artcles_table()
-    add_article()
     pass
 if __name__ == "__main__":
     main()
