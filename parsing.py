@@ -71,7 +71,6 @@ def find_samples():
                         continue
                 with conn:
                     c.execute("INSERT INTO samples VALUES (:Song_ID, :PID, :Artist, :Title)", {'Song_ID':None, 'PID':producers.index(producer)+1, 'Artist':artist, 'Title':title})
-S
 
 def main():#be sure you're running correct function. Not all functions meant to be run everytime.
     pass
